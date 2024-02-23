@@ -71,4 +71,5 @@ measure_performance([800], [linear_prediction_rounded], "Linear Model")
 measure_performance([800], [polynomial_prediction_rounded], "Polynomial Model")
 
 # 3. Image
-<img src="image.jpg" alt="Image Description">
+<img src="![image](https://github.com/Luann8/levantamento-ESTRUTURA-DE-DADOS-Aula-Caio-UV-aula-1/assets/133384636/e59bb043-e4e9-4fda-9d69-6a651ef49cf6)
+" alt="Image Description">
