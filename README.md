@@ -1,6 +1,6 @@
   <h1>1- Definindo uma sequência de DNA</h1>
 
-    <pre><code>
+   <pre> <code>
 dna_sequence = "ATCGATCGATCGATCG"
 
 print("First three nucleotides:", dna_sequence[:3])
@@ -15,7 +15,7 @@ print("Sequence after addition:", dna_sequence)
 
 dna_sequence = dna_sequence[:-4]
 print("Sequence after removal:", dna_sequence)
-    </code></pre>
+    </code> </pre>
 
     <h1>2- Como encontrar o fluxo máximo de passageiros entre as duas cidades?</h1>
 
