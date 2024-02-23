@@ -1,6 +1,5 @@
 
-1- 
- # Defining a DNA sequence
+ # 1- Defining a DNA sequence
 dna_sequence = "ATCGATCGATCGATCG"
 
 print("First three nucleotides:", dna_sequence[:3])
@@ -16,7 +15,7 @@ print("Sequence after addition:", dna_sequence)
 dna_sequence = dna_sequence[:-4]
 print("Sequence after removal:", dna_sequence)
 
-2- import numpy as np
+# 2- import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import LinearRegression
@@ -37,7 +36,7 @@ def get_railway_data():
 
 user_data = get_railway_data()
 
-# Assuming the capacity data for the railways is already available
+#Assuming the capacity data for the railways is already available
 
 X_train = [
     [200],  # Capacity of railway 1
