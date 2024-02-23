@@ -1,5 +1,6 @@
+  <h1>1- Definindo uma sequência de DNA</h1>
 
- # 1- Definindo uma sequência de DNA
+    <pre><code>
 dna_sequence = "ATCGATCGATCGATCG"
 
 print("First three nucleotides:", dna_sequence[:3])
@@ -14,9 +15,11 @@ print("Sequence after addition:", dna_sequence)
 
 dna_sequence = dna_sequence[:-4]
 print("Sequence after removal:", dna_sequence)
+    </code></pre>
 
-# 2- Como encontrar o fluxo máximo de passageiros entre as duas cidades?
+    <h1>2- Como encontrar o fluxo máximo de passageiros entre as duas cidades?</h1>
 
+    <pre><code>
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import LinearRegression
@@ -37,7 +40,7 @@ def get_railway_data():
 
 user_data = get_railway_data()
 
-#Assuming the capacity data for the railways is already available
+# Assuming the capacity data for the railways is already available
 
 X_train = [
     [200],  # Capacity of railway 1
@@ -70,7 +73,9 @@ print(f'The maximum passenger flow prediction (polynomial model) for the provide
 
 measure_performance([800], [linear_prediction_rounded], "Linear Model")
 measure_performance([800], [polynomial_prediction_rounded], "Polynomial Model")
+    </code></pre>
 
-# 3. Ir de Arad até Bucharest. Qual seria o menor caminho?
-![image](https://github.com/Luann8/levantamento-ESTRUTURA-DE-DADOS-Aula-Caio-UV-aula-1/assets/133384636/89ae1631-0e4c-462f-8c81-30e21ff6b4d2)
+    <h1>3. Ir de Arad até Bucharest. Qual seria o menor caminho?</h1>
 
+    <img src="https://github.com/Luann8/levantamento-ESTRUTURA-DE-DADOS-Aula-Caio-UV-aula-1/assets/133384636/89ae1631-0e4c-462f-8c81-30e21ff6b4d2" alt="imagem">
+</body>
