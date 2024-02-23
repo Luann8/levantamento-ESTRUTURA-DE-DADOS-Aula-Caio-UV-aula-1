@@ -15,7 +15,7 @@ print("Sequence after addition:", dna_sequence)
 dna_sequence = dna_sequence[:-4]
 print("Sequence after removal:", dna_sequence)
 
-# 2- import numpy as np
+# 2- Como encontrar o fluxo máximo de passageiros entre as duas cidades?
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import LinearRegression
