@@ -1,5 +1,5 @@
 
- # 1- Defining a DNA sequence
+ # 1- Definindo uma sequência de DNA
 dna_sequence = "ATCGATCGATCGATCG"
 
 print("First three nucleotides:", dna_sequence[:3])
@@ -71,6 +71,6 @@ print(f'The maximum passenger flow prediction (polynomial model) for the provide
 measure_performance([800], [linear_prediction_rounded], "Linear Model")
 measure_performance([800], [polynomial_prediction_rounded], "Polynomial Model")
 
-# 3. Image
+# 3. Ir de Arad até Bucharest. Qual seria o menor caminho?
 ![image](https://github.com/Luann8/levantamento-ESTRUTURA-DE-DADOS-Aula-Caio-UV-aula-1/assets/133384636/89ae1631-0e4c-462f-8c81-30e21ff6b4d2)
 
