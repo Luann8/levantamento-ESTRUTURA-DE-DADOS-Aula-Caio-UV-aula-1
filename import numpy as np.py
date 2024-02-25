@@ -1,53 +1,53 @@
-import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error
 
-def measure_performance(y_real, y_pred, model_name):
+def medir_desempenho(y_real, y_pred, nome_modelo):
     mae = mean_absolute_error(y_real, y_pred)
-    print(f'The Mean Absolute Error (MAE) for the {model_name} is: {mae}')
+    print(f'O Erro Absoluto Médio (MAE) para o {nome_modelo} é: {mae}')
 
-def get_railway_data():
-    # Assuming the user provides data for each railway connecting intermediate cities
-    num_railways = int(input("Enter the number of railways connecting intermediate cities: "))
-    railway_data = []
-    for i in range(num_railways):
-        capacity = float(input(f"Enter the capacity of railway {i+1} (in passengers/hour): "))
-        railway_data.append(capacity)
-    return railway_data
+def obter_dados_ferroviarios():
+    # Supondo que o usuário forneça dados para cada ferrovia conectando cidades intermediárias
+    num_ferrovias = int(input("Digite o número de ferrovias que conectam cidades intermediárias: "))
+    dados_ferroviarios = []
+    for i in range(num_ferrovias):
+        capacidade = float(input(f"Digite a capacidade da ferrovia {i+1} (em passageiros/hora): "))
+        dados_ferroviarios.append(capacidade)
+    return dados_ferroviarios
 
-user_data = get_railway_data()
+dados_usuario = obter_dados_ferroviarios()
 
-# Assuming the capacity data for the railways is already available
-X_train = [
-    [200],  # Capacity of railway 1
-    [250],  # Capacity of railway 2
-    [180],  # Capacity of railway 3
-    [220],  # Capacity of railway 4
-    [300],  # Capacity of railway 5
+# Supondo que os dados de capacidade para as ferrovias já estejam disponíveis
+
+X_treino = [
+    [200],  # Capacidade da ferrovia 1
+    [250],  # Capacidade da ferrovia 2
+    [180],  # Capacidade da ferrovia 3
+    [220],  # Capacidade da ferrovia 4
+    [300],  # Capacidade da ferrovia 5
 ]
 
-y_train = [500, 600, 450, 550, 700]  # Example maximum passenger flow for each railway configuration
+y_treino = [500, 600, 450, 550, 700]  # Exemplo de fluxo máximo de passageiros para cada configuração de ferrovia
 
-scaler = StandardScaler()
-X_train_normalized = scaler.fit_transform(X_train)
+normalizador = StandardScaler()
+X_treino_normalizado = normalizador.fit_transform(X_treino)
 
-linear_model = LinearRegression()
-linear_model.fit(X_train_normalized, y_train)
+modelo_linear = LinearRegression()
+modelo_linear.fit(X_treino_normalizado, y_treino)
 
-user_data = np.array(user_data).reshape(1, -1)  # Reshape user_data for prediction
-user_data_normalized = scaler.transform(user_data)
-linear_prediction = linear_model.predict(user_data_normalized)
-linear_prediction_rounded = round(linear_prediction[0], 2)
-print(f'The maximum passenger flow prediction (linear model) for the provided railway configuration is: {linear_prediction_rounded} passengers/hour')
+dados_usuario = np.array(dados_usuario).reshape(1, -1)  # Reformular dados_usuario para previsão
+dados_usuario_normalizado = normalizador.transform(dados_usuario)
+previsao_linear = modelo_linear.predict(dados_usuario_normalizado)
+previsao_linear_arredondada = round(previsao_linear[0], 2)
+print(f'A previsão de fluxo máximo de passageiros (modelo linear) para a configuração de ferrovia fornecida é: {previsao_linear_arredondada} passageiros/hora')
 
-polynomial_model = make_pipeline(StandardScaler(), LinearRegression())
-polynomial_model.fit(X_train_normalized, y_train)
+modelo_polinomial = make_pipeline(StandardScaler(), LinearRegression())
+modelo_polinomial.fit(X_treino_normalizado, y_treino)
 
-polynomial_prediction = polynomial_model.predict(user_data_normalized)
-polynomial_prediction_rounded = round(polynomial_prediction[0], 2)
-print(f'The maximum passenger flow prediction (polynomial model) for the provided railway configuration is: {polynomial_prediction_rounded} passengers/hour')
+previsao_polinomial = modelo_polinomial.predict(dados_usuario_normalizado)
+previsao_polinomial_arredondada = round(previsao_polinomial[0], 2)
+print(f'A previsão de fluxo máximo de passageiros (modelo polinomial) para a configuração de ferrovia fornecida é: {previsao_polinomial_arredondada} passageiros/hora')
 
-measure_performance([800], [linear_prediction_rounded], "Linear Model")
-measure_performance([800], [polynomial_prediction_rounded], "Polynomial Model")
+medir_desempenho([800], [previsao_linear_arredondada], "Modelo Linear")
+medir_desempenho([800], [previsao_polinomial_arredondada], "Modelo Polinomial")
