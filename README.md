@@ -115,5 +115,5 @@ if __name__ == "__main__":
 
   <h1>3. Ir de Arad até Bucharest. Qual seria o menor caminho?</h1>
 
-  <img src="https://github.com/Luann8/levantamento-ESTRUTURA-DE-DADOS-Aula-Caio-UV-aula-1/assets/133384636/89ae1631-0e4c-462f-8c81-30e21ff6b4d2" alt="imagem">
+  <img src="https://github.com/Luann8/levantamento-ESTRUTURA-DE-DADOS-Aula-Caio-UV-aula-1/blob/main/3.jpg" alt="imagem">
 </body>
