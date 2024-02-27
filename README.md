@@ -34,18 +34,12 @@ class Graph:
 
 if __name__ == "__main__":
     network = Graph()
-    network.add_vertex('A')
-    network.add_vertex('B')
-    network.add_vertex('C')
-    network.add_vertex('D')
+    network.add_vertex()
 
-    network.add_edge('A', 'B', 0.9)  
-    network.add_edge('A', 'C', 0.8)
-    network.add_edge('B', 'D', 0.7)
-    network.add_edge('C', 'D', 0.6)
+    network.add_edge()  
 
-    start_device = 'A'
-    end_device = 'D'
+    start_device = ''
+    end_device = ''
     reliability = network.dijkstra(start_device, end_device)
     if reliability is not None:
         print(f"O caminho mais confiável de {start_device} para {end_device} tem uma confiabilidade de {reliability}.")
