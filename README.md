@@ -107,21 +107,12 @@ class Graph:
         return max_flow
 
 if __name__ == "__main__":
-    graph = Graph(6)  
+    graph = Graph()  
 
-    graph.add_edge(0, 1, 16)
-    graph.add_edge(0, 2, 13)
-    graph.add_edge(1, 2, 10)
-    graph.add_edge(1, 3, 12)
-    graph.add_edge(2, 1, 4)
-    graph.add_edge(2, 4, 14)
-    graph.add_edge(3, 2, 9)
-    graph.add_edge(3, 5, 20)
-    graph.add_edge(4, 3, 7)
-    graph.add_edge(4, 5, 4)
+    graph.add_edge()
 
-    source = 0
-    sink = 5
+    source = 
+    sink = 
 
     max_flow = graph.ford_fulkerson(source, sink)
     print("O fluxo máximo de passageiros entre as cidades é:", max_flow)
