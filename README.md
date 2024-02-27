@@ -58,60 +58,74 @@ if __name__ == "__main__":
   <h1>2- Como encontrar o fluxo máximo de passageiros entre as duas cidades?</h1>
 
   <pre><code>
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import make_pipeline
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error
+from collections import defaultdict
 
-def medir_desempenho(y_real, y_pred, nome_modelo):
-    mae = mean_absolute_error(y_real, y_pred)
-    print(f'O Erro Médio Absoluto (MAE) para o {nome_modelo} é: {mae}')
+class Graph:
+    def __init__(self, vertices):
+        self.graph = defaultdict(dict)
+        self.vertices = vertices
 
-def obter_dados_ferroviarios():
-    # Supondo que o usuário forneça dados para cada ferrovia conectando cidades intermediárias
-    num_ferrovias = int(input("Digite o número de ferrovias que conectam cidades intermediárias: "))
-    dados_ferroviarios = []
-    for i in range(num_ferrovias):
-        capacidade = float(input(f"Digite a capacidade da ferrovia {i+1} (em passageiros/hora): "))
-        dados_ferroviarios.append(capacidade)
-    return dados_ferroviarios
+    def add_edge(self, u, v, capacity):
+        self.graph[u][v] = capacity
+        self.graph[v][u] = 0  # Back edge capacity is initialized as 0
 
-dados_usuario = obter_dados_ferroviarios()
+    def bfs(self, s, t, parent):
+        visited = [False] * self.vertices
+        queue = []
+        queue.append(s)
+        visited[s] = True
 
-# Supondo que os dados de capacidade para as ferrovias já estejam disponíveis
+        while queue:
+            u = queue.pop(0)
+            for v in range(self.vertices):
+                if visited[v] == False and self.graph[u][v] > 0:
+                    queue.append(v)
+                    visited[v] = True
+                    parent[v] = u
 
-X_treino = [
-    [200],  # Capacidade da ferrovia 1
-    [250],  # Capacidade da ferrovia 2
-    [180],  # Capacidade da ferrovia 3
-    [220],  # Capacidade da ferrovia 4
-    [300],  # Capacidade da ferrovia 5
-]
+        return True if visited[t] else False
 
-y_treino = [500, 600, 450, 550, 700]  # Exemplo de fluxo máximo de passageiros para cada configuração de ferrovia
+    def ford_fulkerson(self, source, sink):
+        parent = [-1] * self.vertices
+        max_flow = 0
 
-normalizador = StandardScaler()
-X_treino_normalizado = normalizador.fit_transform(X_treino)
+        while self.bfs(source, sink, parent):
+            path_flow = float("Inf")
+            s = sink
+            while s != source:
+                path_flow = min(path_flow, self.graph[parent[s]][s])
+                s = parent[s]
 
-modelo_linear = LinearRegression()
-modelo_linear.fit(X_treino_normalizado, y_treino)
+            max_flow += path_flow
+            v = sink
+            while v != source:
+                u = parent[v]
+                self.graph[u][v] -= path_flow
+                self.graph[v][u] += path_flow
+                v = parent[v]
 
-dados_usuario = np.array(dados_usuario).reshape(1, -1)  # Reformular dados_usuario para previsão
-dados_usuario_normalizado = normalizador.transform(dados_usuario)
-previsao_linear = modelo_linear.predict(dados_usuario_normalizado)
-previsao_linear_arredondada = round(previsao_linear[0], 2)
-print(f'A previsão de fluxo máximo de passageiros (modelo linear) para a configuração de ferrovia fornecida é: {previsao_linear_arredondada} passageiros/hora')
+        return max_flow
 
-modelo_polinomial = make_pipeline(StandardScaler(), LinearRegression())
-modelo_polinomial.fit(X_treino_normalizado, y_treino)
+# Exemplo de uso:
+if __name__ == "__main__":
+    graph = Graph(6)  
 
-previsao_polinomial = modelo_polinomial.predict(dados_usuario_normalizado)
-previsao_polinomial_arredondada = round(previsao_polinomial[0], 2)
-print(f'A previsão de fluxo máximo de passageiros (modelo polinomial) para a configuração de ferrovia fornecida é: {previsao_polinomial_arredondada} passageiros/hora')
+    graph.add_edge(0, 1, 16)
+    graph.add_edge(0, 2, 13)
+    graph.add_edge(1, 2, 10)
+    graph.add_edge(1, 3, 12)
+    graph.add_edge(2, 1, 4)
+    graph.add_edge(2, 4, 14)
+    graph.add_edge(3, 2, 9)
+    graph.add_edge(3, 5, 20)
+    graph.add_edge(4, 3, 7)
+    graph.add_edge(4, 5, 4)
 
-medir_desempenho([800], [previsao_linear_arredondada], "Modelo Linear")
-medir_desempenho([800], [previsao_polinomial_arredondada], "Modelo Polinomial")
+    source = 0
+    sink = 5
 
+    max_flow = graph.ford_fulkerson(source, sink)
+    print("O fluxo máximo de passageiros entre as cidades é:", max_flow)
 
     </code></pre>
 
