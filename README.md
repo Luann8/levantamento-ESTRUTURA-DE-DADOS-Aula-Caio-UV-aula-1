@@ -1,10 +1,4 @@
-  <h1>1- Temos uma rede de dispositivos eletrônicos.
-Tais dispositivos estão interligados por canais de
-comunicação. Cada canal tem um valor associado C
-(número real no intervalo 0 <= C <= 1) que representa sua
-confiabilidade. Interpreta-se como confiabilidade a
-probabilidade de que o canal não venha a falhar.
-Forneça um algoritmo para encontrar o caminho mais
+  <h1>1- Forneça um algoritmo para encontrar o caminho mais
 confiável entre dois dispositivos dados
 
 </h1>
