@@ -1,3 +1,12 @@
+
+<div style="display: inline_block"><br>
+ <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" />
+ <img align="center" alt="React" height="30" width="40" src="https://github.com/Luann8/Web_Programming_Laboratory-Univassouras/blob/main/universidade%20de%20vassouras%20Vertical.svg" >
+
+</div>
+
+  
+  
   <h1>1- Forneça um algoritmo para encontrar o caminho mais
 confiável entre dois dispositivos dados
 
