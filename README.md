@@ -106,7 +106,6 @@ class Graph:
 
         return max_flow
 
-# Exemplo de uso:
 if __name__ == "__main__":
     graph = Graph(6)  
 
