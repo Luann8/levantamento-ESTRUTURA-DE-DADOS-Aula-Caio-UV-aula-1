@@ -1,20 +1,63 @@
-  <h1>1- Definindo uma sequência de DNA</h1>
+  <h1>1- Temos uma rede de dispositivos eletrônicos.
+Tais dispositivos estão interligados por canais de
+comunicação. Cada canal tem um valor associado C
+(número real no intervalo 0 <= C <= 1) que representa sua
+confiabilidade. Interpreta-se como confiabilidade a
+probabilidade de que o canal não venha a falhar.
+Forneça um algoritmo para encontrar o caminho mais
+confiável entre dois dispositivos dados
+
+</h1>
 
    <pre> <code>
-dna_sequence = "ATCGATCGATCGATCG"
+import heapq
 
-print("Primeiros três nucleotídeos:", dna_sequence[:3])
-print("Últimos três nucleotídeos:", dna_sequence[-3:])
+class Graph:
+    def __init__(self):
+        self.vertices = {}
 
-print("Número de 'A's na sequência:", dna_sequence.count('A'))
+    def add_vertex(self, name):
+        if name not in self.vertices:
+            self.vertices[name] = {}
 
-print("Comprimento da sequência:", len(dna_sequence))
+    def add_edge(self, from_vertex, to_vertex, reliability):
+        self.vertices[from_vertex][to_vertex] = reliability
 
-dna_sequence += "ATCG"
-print("Sequência após adição:", dna_sequence)
+    def dijkstra(self, start, end):
+        heap = [(0, start)]
+        visited = set()
+        while heap:
+            (reliability, current_vertex) = heapq.heappop(heap)
+            if current_vertex in visited:
+                continue
+            visited.add(current_vertex)
+            if current_vertex == end:
+                return reliability
+            for neighbor, edge_reliability in self.vertices[current_vertex].items():
+                if neighbor not in visited:
+                    heapq.heappush(heap, (reliability * edge_reliability, neighbor))
+        return None
 
-dna_sequence = dna_sequence[:-4]
-print("Sequência após remoção:", dna_sequence)
+if __name__ == "__main__":
+    network = Graph()
+    network.add_vertex('A')
+    network.add_vertex('B')
+    network.add_vertex('C')
+    network.add_vertex('D')
+
+    network.add_edge('A', 'B', 0.9)  
+    network.add_edge('A', 'C', 0.8)
+    network.add_edge('B', 'D', 0.7)
+    network.add_edge('C', 'D', 0.6)
+
+    start_device = 'A'
+    end_device = 'D'
+    reliability = network.dijkstra(start_device, end_device)
+    if reliability is not None:
+        print(f"O caminho mais confiável de {start_device} para {end_device} tem uma confiabilidade de {reliability}.")
+    else:
+        print(f"Não há caminho possível de {start_device} para {end_device}.")
+
 
     </code> </pre>
 
